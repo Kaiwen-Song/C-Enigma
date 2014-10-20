@@ -15,7 +15,7 @@ public:
 	void configure(char* fileDir);
 	int outputForward(int input);
 	int outputBack(int input);
-	bool shouldRotate();
+	void rotate();
 };
 
 #endif

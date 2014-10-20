@@ -10,16 +10,18 @@ Operator** operators;
 int numberOfOperators; 
 
 public: 
-
+	Enigma(int numberOfOs);
+	~Enigma();
+	
 	void configurePlugBoard(char* fileDir);
 
 	void configureRotor(char* fildDir, int position);
 
-	Enigma(int numberOfOs);
-
 	int output(int input);
 
 	void rotateRotor();
+
+	void setLinks();
 };
 
 #endif

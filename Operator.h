@@ -13,12 +13,12 @@ protected:
 	std::vector<int>configuration;
 
 public:
-	Operator();
-	virtual ~Operator();
+	//Operator();
+	//~Operator();
 	virtual void configure(char* fileDir) = 0;
 	virtual int outputForward(int input) = 0;
 	virtual int outputBack(int input) = 0;
-	virtual bool shouldRotate() = 0;
+	virtual void rotate() = 0;
 	};
 
 #endif

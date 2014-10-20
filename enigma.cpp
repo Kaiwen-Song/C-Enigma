@@ -25,6 +25,15 @@
 
 	void Enigma::rotateRotor(){
 		if(numberOfOperators > 2){
-			dynamic_cast<Rotor*>(operators[1])->rotate();
+		operators[1]->rotate();
 		}
+	}
+
+	void Enigma::setLinks(){
+		dynamic_cast<PlugBoard*>(operators[0])->setNextOpr(operators[1]);
+		dynamic_cast<Reflector*>(operators[numberOfOperators-1])-> 
+			setNextOperator(operators[numberOfOperators-2]);
+		for(int i = 1; numberOfOperators-1; ++i){
+		dynamic_cast<Rotor*>(operators[i]) -> setPrev(operators[i-1]);
+		}	
 	}

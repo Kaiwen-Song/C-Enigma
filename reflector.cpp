@@ -31,6 +31,5 @@ int Reflector::outputBack(int input){
 
 void Reflector::configure(char* fileDir){};
 
-bool shouldRotate(){
-	return false;
+void Reflector::rotate(){
 }

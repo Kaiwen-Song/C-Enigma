@@ -21,12 +21,8 @@ using namespace std;
 
 	
 	void Rotor::rotate(){
-		if(++rotations < 26){
-		if(next.shouldRotate()){
-			next.rotate();
-		}
-		rotations -= 26;
-		}
+		next->rotate();
+		++rotations %= 26;
 	}
 
 	void Rotor::configure(char* fileDir){
@@ -65,8 +61,4 @@ using namespace std;
 
 	int Rotor::outputBack(int input){
 		return (*previous).outputBack(bmap[input+rotations]);
-	}
-
-	bool shouldRotate(){
-		return true;
 	}

@@ -20,11 +20,11 @@ int main(int argc, char **argv)
 
 	char input;
 	while(cin>>input){
-		cout<<processOutputInt(
+			cout<<processOutputInt(
 			(enigma->output(processInputChar(input))));
-		enigma->rotateRotor();
+			enigma->rotateRotor();
 		}
-	delete(enigma);
+
 }
 
 int processInputChar(char c){

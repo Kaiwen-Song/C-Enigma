@@ -11,10 +11,11 @@ private:
 
 public:
 		PlugBoard();
+		~PlugBoard();
 		void configure(char* fileDir);
 		int outputForward(int input);
 		int outputBack(int input);
 		void setNextOpr(Operator* R);
-		bool shouldRotate();
+		void rotate();
 };
 #endif

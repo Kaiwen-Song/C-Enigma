@@ -49,6 +49,5 @@ int PlugBoard::outputBack(int input){
 	else return (*opr).outputForward(fmap[input]);
 }
 
-bool shouldRotate(){
-	return false;
+void PlugBoard::rotate(){
 }

@@ -10,6 +10,7 @@ private:
 
 public: 
 	Rotor();
+	~Rotor();
 	Rotor(char* configuration);
 	Rotor(char* configuration, Operator* prev, Operator* nxt);
 	void configure(char* fileDir);
@@ -18,6 +19,5 @@ public:
 	void setNext(Operator* nxt);
 	int outputForward(int input);
 	int outputBack(int input);
-	bool shouldRotate();
 };
 #endif

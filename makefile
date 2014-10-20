@@ -3,20 +3,20 @@
 enigma: Main.o enigma.o reflector.o rotor.o plugboard.o 
 	g++ -o enigma.o Main.o reflector.o rotor.o plugboard.o 
 
-enigma.o: Enigma.cpp
-	g++ -c Enigma.cpp
+enigma.o: enigma.cpp Enigma.h
+	g++ -c enigma.cpp 
 
-Main.o: Main.cpp
-	g++ -c Main.cpp
+Main.o: main.cpp 
+	g++ -c main.cpp
 
-reflector.o: Reflector.cpp 
-	g++ -c Reflector.cpp
+reflector.o: reflector.cpp Reflector.h 
+	g++ -c reflector.cpp
 
-rotor.o: Rotor.cpp 
-	g++ -c Reflector.cpp
+rotor.o: rotor.cpp Rotor.h
+	g++ -c rotor.cpp
 
-plugboard.o: Plugboard.cpp
-	g++ -c Plugboard.cpp
+plugboard.o: plugboard.cpp Plugboard.h
+	g++ -c plugboard.cpp
 
 
 
