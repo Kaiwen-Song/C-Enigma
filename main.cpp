@@ -18,12 +18,16 @@ int main(int argc, char **argv)
 		enigma->configureRotor(argv[i+1], i+1);
 	}
 
+	enigma->setLinks();
+
 	char input;
 	while(cin>>input){
 			cout<<processOutputInt(
 			(enigma->output(processInputChar(input))));
 			enigma->rotateRotor();
 		}
+		
+	delete(enigma);
 
 }
 

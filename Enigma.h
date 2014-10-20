@@ -4,7 +4,7 @@
 #include "Reflector.h"
 #include "Plugboard.h"
 
-class Enigma{
+class Enigma {
 	
 Operator** operators;
 int numberOfOperators; 

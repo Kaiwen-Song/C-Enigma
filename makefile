@@ -6,7 +6,7 @@ enigma: Main.o enigma.o reflector.o rotor.o plugboard.o
 enigma.o: enigma.cpp Enigma.h
 	g++ -c enigma.cpp 
 
-Main.o: main.cpp 
+Main.o: main.cpp Enigma.h
 	g++ -c main.cpp
 
 reflector.o: reflector.cpp Reflector.h 

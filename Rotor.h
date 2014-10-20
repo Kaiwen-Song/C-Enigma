@@ -4,6 +4,7 @@
 
 class Rotor: public Operator{
 private: 
+	//offset added onto the output from map
 	int rotations;
 	Operator* previous;
 	Operator* next;
