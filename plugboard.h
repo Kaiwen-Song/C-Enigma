@@ -1,18 +1,20 @@
 #ifndef PLUGBOARD_H
 #define PLUGBOARD_H
-#include "operator.h"
+#include "Operator.h"
 
 
-class Plugboard : public Operator{
+class PlugBoard : public Operator{
 
 private:
 	bool defaultConfig;
-	operator& op;
+	Operator* opr;
 
 public:
-		Plugboard();
-		void configure(char* configuration);
-		void outputForward(int input);
-		void outputBack(int input);
+		PlugBoard();
+		void configure(char* fileDir);
+		int outputForward(int input);
+		int outputBack(int input);
+		void setNextOpr(Operator* R);
+		bool shouldRotate();
 };
 #endif

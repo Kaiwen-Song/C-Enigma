@@ -1,4 +1,4 @@
-#include "reflector.h"
+#include "Reflector.h"
 
 Reflector::Reflector(){
 	for(int i = 0; i< 26; i++){
@@ -26,6 +26,11 @@ int Reflector::outputForward(int input){
 }
 
 int Reflector::outputBack(int input){
-	return opr.outputBack(stored);
+	return (*opr).outputBack(stored);
 }
+
+void Reflector::configure(char* fileDir){};
+
+bool shouldRotate(){
+	return false;
 }

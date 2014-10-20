@@ -1,40 +1,54 @@
-#include "plugboard.h"
+#include "Plugboard.h"
+using namespace std;
 
 PlugBoard::PlugBoard(){
 	defaultConfig = true;
-	for(int i = 0; i<26; i++){
+	for(int i = 0; i<ALPHABET_SIZE; i++){
 		configuration[i] = i;
 	}
 }
 
 void PlugBoard::configure(char* fileDir){
 
-	ifstream* conFILE;
-	bool isConfigured;
-	conFILE = fopen(fileDir, "r");
-	int config[26];
-	int index=0;
-	if(conFILE == NULL){
+	ifstream conFILE;
+	int noOfValues = 0;
+	int valueRead;
+	conFILE.open(fileDir, ios::in);
+	if(conFILE.fail()){
 		perror("error printing files");
-		defaultConfig = true;
 	} else {
-		while(conFILE.good()){
-			configuration[index] << conFILE.get();
+		while(conFILE>>valueRead){
+			configuration.push_back(valueRead);
+			++noOfValues;
 		}
-		defaultConfig = false;
-		for(int i = 0; i< 26; i++){
-		map[i] = configurations.indexOf(i);
+		int value1; 
+		int value2;
+		for(int i = 0; i< noOfValues; i+=2){
+		value1 = configuration[i];
+		value2 = configuration[i+1];
+		fmap[value1] = value2;
+		bmap[value2] = value1; 
 			}
 
 	}
-	}
 
-int PlugBoard::output(int input){
-	if(defaultConfig)return input;
-	else return fmap[input];
+	conFILE.close();
+}
+
+void PlugBoard::setNextOpr(Operator* R){
+	opr = R;
+}
+
+int PlugBoard::outputForward(int input){
+	if(defaultConfig)return (*opr).outputForward(input);
+	else return (*opr).outputForward(fmap[input]);
 }
 
 int PlugBoard::outputBack(int input){
-	if(defaultConfig) return input;
-	else return bmap[input];
+	if(defaultConfig)return (*opr).outputForward(input);
+	else return (*opr).outputForward(fmap[input]);
+}
+
+bool shouldRotate(){
+	return false;
 }
