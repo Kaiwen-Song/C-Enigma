@@ -11,7 +11,7 @@ int numberOfOperators;
 
 public: 
 	Enigma(int numberOfOs);
-	~Enigma();
+	~Enigma() = default;
 	
 	void configurePlugBoard(char* fileDir);
 

@@ -1,23 +1,22 @@
 # edit this makefile so that running make compiles your enigma program
 
-enigma: Main.o enigma.o reflector.o rotor.o plugboard.o 
-	g++ -o enigma.o Main.o reflector.o rotor.o plugboard.o 
+enigma: main.o enigma.o reflector.o rotor.o plugboard.o 
+	g++ -o enigma enigma.o main.o reflector.o rotor.o plugboard.o 
 
-enigma.o: enigma.cpp Enigma.h
-	g++ -c enigma.cpp 
+main.o: main.cpp
+	g++ -c $^
 
-Main.o: main.cpp Enigma.h
-	g++ -c main.cpp
+enigma.o: enigma.cpp
+	g++ -c $^
 
-reflector.o: reflector.cpp Reflector.h 
-	g++ -c reflector.cpp
+reflector.o: reflector.cpp
+	g++ -c $^
 
-rotor.o: rotor.cpp Rotor.h
-	g++ -c rotor.cpp
+rotor.o: rotor.cpp
+	g++ -c $^
 
-plugboard.o: plugboard.cpp Plugboard.h
-	g++ -c plugboard.cpp
-
+plugboard.o: plugboard.cpp 
+	g++ -c $^
 
 
 clean:
