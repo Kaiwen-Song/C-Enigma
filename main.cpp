@@ -6,45 +6,44 @@
 
 using namespace std;
 
-int processInputChar(char c);
-char processOutputInt(int i);
+int charToInt(char c);
+char intToChar(int i);
 
 
 int main(int argc, char **argv)
 {
-	Enigma* enigma = new Enigma(argc + 1);
+	unique_ptr<Enigma> enigma (new Enigma(argc));
 	enigma->configurePlugBoard(argv[argc-1]);
+	
+	if(argc>2){
 	for(int i = 0; i< argc-2; i++){
 		enigma->configureRotor(argv[i+1], i+1);
+	  }
 	}
-
-	enigma->setLinks();
 
 	char input;
 	while(cin>>input){
-			cout<<processOutputInt(
-			(enigma->output(processInputChar(input))));
-			enigma->rotateRotor();
-		}
-		
-	delete(enigma);
+		cout<<intToChar(
+		(enigma->output(charToInt(input))));
+		enigma->rotateRotor();
+	}
 
 }
 
-int processInputChar(char c){
+int charToInt(char c){
 	if(c < 'A' || c > 'Z'){
-		//perror;
+		perror("input only between A and Z please!");
 	}
-	int input = c; 
+	int input = c - 65; 
 	return input;
 
 }
 
-char processOutputInt(int i){
-	if(i < 65 || i > 90){
-		//perror;
+char intToChar(int i){
+	if(i < 0 || i > 26){
+		perror("input only between A and Z please!");
 	}
-	char output = i;
+	char output = i + 65;
 	return output;
 
 }

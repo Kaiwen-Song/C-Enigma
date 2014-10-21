@@ -1,38 +1,38 @@
 #include "Plugboard.h"
+#include <stdexcept>
+
 using namespace std;
 
 PlugBoard::PlugBoard(){
-	defaultConfig = true;
 	for(int i = 0; i<ALPHABET_SIZE; i++){
-		configuration[i] = i;
+		fmap[i] = i;
 	}
 }
 
 void PlugBoard::configure(char* fileDir){
-
-	ifstream conFILE;
+	vector<int> configuration;
+	ifstream conFILE(fileDir);
 	int noOfValues = 0;
 	int valueRead;
-	conFILE.open(fileDir, ios::in);
-	if(conFILE.fail()){
-		perror("error printing files");
+	if(!conFILE){
+		throw runtime_error("file name does not exist");
 	} else {
 		while(conFILE>>valueRead){
 			configuration.push_back(valueRead);
 			++noOfValues;
 		}
+		conFILE.close();
 		int value1; 
 		int value2;
 		for(int i = 0; i< noOfValues; i+=2){
 		value1 = configuration[i];
 		value2 = configuration[i+1];
 		fmap[value1] = value2;
-		bmap[value2] = value1; 
-			}
+		fmap[value2] = value1;
+		}
 
 	}
 
-	conFILE.close();
 }
 
 void PlugBoard::setNextOpr(Operator* R){
@@ -40,14 +40,11 @@ void PlugBoard::setNextOpr(Operator* R){
 }
 
 int PlugBoard::outputForward(int input){
-	if(defaultConfig)return (*opr).outputForward(input);
-	else return (*opr).outputForward(fmap[input]);
+	return opr->outputForward(fmap[input]);
 }
 
 int PlugBoard::outputBack(int input){
-	if(defaultConfig)return (*opr).outputForward(input);
-	else return (*opr).outputForward(fmap[input]);
+	return fmap[input];
 }
 
-void PlugBoard::rotate(){
-}
+void PlugBoard::rotate(){};

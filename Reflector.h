@@ -5,7 +5,6 @@
 class Reflector : public Operator{
 private: 
 	Operator* opr;
-	int stored;
 
 public: 
 	Reflector();

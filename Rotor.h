@@ -2,12 +2,16 @@
 #define ROTOR_H
 #include "Operator.h"
 
+
+using namespace std;
 class Rotor: public Operator{
 private: 
 	//offset added onto the output from map
 	int rotations;
 	Operator* previous;
 	Operator* next;
+	int fmap[ALPHABET_SIZE];
+	int bmap[ALPHABET_SIZE];
 
 public: 
 	Rotor();
@@ -20,5 +24,6 @@ public:
 	void setNext(Operator* nxt);
 	int outputForward(int input);
 	int outputBack(int input);
+
 };
 #endif

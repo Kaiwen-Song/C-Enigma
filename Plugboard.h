@@ -6,8 +6,8 @@
 class PlugBoard : public Operator{
 
 private:
-	bool defaultConfig;
 	Operator* opr;
+	int fmap[ALPHABET_SIZE];
 
 public:
 		PlugBoard();
@@ -18,4 +18,5 @@ public:
 		void setNextOpr(Operator* R);
 		void rotate();
 };
+
 #endif

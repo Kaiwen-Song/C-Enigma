@@ -18,7 +18,6 @@ rotor.o: rotor.cpp
 plugboard.o: plugboard.cpp 
 	g++ -c $^
 
-
 clean:
 	rm -rf enigma *.o
 

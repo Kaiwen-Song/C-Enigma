@@ -5,8 +5,15 @@ Enigma::Enigma(int numberOfOps){
 	operators = new Operator* [numberOfOperators];
 	operators[0] = new PlugBoard();
 	operators[numberOfOps - 1] = new Reflector();
-	for(int i = 0; i < numberOfOps-2; i++){
+	for(int i = 0; i < numberOfOps-2; ++i){
 		operators[i+1] = new Rotor();
+	}
+	setLinks();
+}
+
+Enigma::~Enigma(){
+	for(int i = 0; i<numberOfOperators; ++i){
+		delete operators[i];
 	}
 }
 
@@ -15,16 +22,16 @@ void Enigma::configurePlugBoard(char* fileDir){
 }
 
 void Enigma::configureRotor(char* fileDir, int position){
-	operators[position-1]->configure(fileDir);
+	operators[position]->configure(fileDir);
 }
 
 int Enigma::output(int input){
-	return (operators[numberOfOperators-1])->outputBack((operators[0])->outputForward(input));
+	return (operators[0])->outputForward(input);
 }
 
 void Enigma::rotateRotor(){
 	if(numberOfOperators > 2){
-	operators[1]->rotate();
+	dynamic_cast<Rotor*>(operators[1])->rotate();
 	}
 }
 
@@ -32,7 +39,8 @@ void Enigma::setLinks(){
 	dynamic_cast<PlugBoard*>(operators[0])->setNextOpr(operators[1]);
 	dynamic_cast<Reflector*>(operators[numberOfOperators-1])-> 
 		setNextOperator(operators[numberOfOperators-2]);
-	for(int i = 1; numberOfOperators-1; ++i){
+	for(int i = 1; i < numberOfOperators-1; ++i){
+	  dynamic_cast<Rotor*>(operators[i]) -> setNext(operators[i+1]);
 	  dynamic_cast<Rotor*>(operators[i]) -> setPrev(operators[i-1]);
 	}	
 }
